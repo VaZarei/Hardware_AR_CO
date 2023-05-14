@@ -1,0 +1,58 @@
+String inBytes
+
+void setup() {
+  
+Serial.begin(9600);
+pinMode(LED_BUILTIN, OUTPUT);
+
+}
+
+void loop() {
+
+if (Serial.available()>0){
+  inBytes = Serial.readStringUntil('\n');
+  
+  if (inBytes == "on"){
+    digitalWrite(LED_BUILTIN, HIGH);
+    Serial.write("Led on");
+  }
+
+  if (inBytes == "off"){
+    digitalWrite(LED_BUILTIN, LOW);
+    Serial>Write("LED OFF");
+
+  else{
+      Serial.write("Invalid Input !");
+    }
+  }
+
+
+}
+}
+
+
+
+
+------------------------ python
+
+
+import serial
+import time
+
+serialcomm = serial.Serial('COM4', 9600)
+serialcomm.timeout = 1
+
+
+while True:
+    
+    i = input("input(on / off) :").strip()
+    if i =='done':
+        print("Finesh program")
+        break
+
+    serialcomm.write(i.encode())
+    time.sleep(0.5)
+    print(serialcomm.readline().decode('asci'))
+
+serialcomm.close()
+
