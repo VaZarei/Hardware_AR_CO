@@ -1,24 +1,32 @@
-
-
-# xcopy C:\Users\lan-27600\Desktop\source\arduinoSide.py C:\Users\lan-27600\Desktop\destination /s /y /e /x /v /k
-import subprocess
 import os
-import ctypes, sys
+import time
 
-def is_admin():
+flash_address =  "r:"
+
+
+
+def check_flash(flash_address):
+    i = 0
     try:
-        return ctypes.windll.shell32.IsUserAnAdmin()
-    except:
-        return False
+      for files in os.listdir(flash_address) :
+        i+=1
+      return i
+
+    except FileNotFoundError :
+       return i
 
 
 
+while True:
+   
+    checking = check_flash(flash_address)
 
-if is_admin():
-# Code of your program here
-    print(" is admin ")
-    os.system('cmd /k "H:\Projects\SafeTranferData\\batchT1.bat"')
-    pass
-else:
-# Re-run the program with admin rights
-    ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, __file__, None, 1)
+    if checking > 0 :
+     print("The Address is available") 
+    else:
+     print("The Address is not available !!!")
+
+    time.sleep(2)
+    
+
+    

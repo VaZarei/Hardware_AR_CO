@@ -4,7 +4,7 @@ import string
 from threading import Thread
 import stat
 
-source            = "H:\Projects\SafeTranferData\Data\Fol_1"
+source            = "R:"
 clientDestination = "H:\Projects\SafeTranferData\Data\Fol_2"
 adminDestination  = "H:\Projects\SafeTranferData\Data\Admin"
 
@@ -14,10 +14,10 @@ incpectionExtentions  = ["exe", "py", "mp4", "ini"]
 forbiddenExtentions   = ["mp3", "py"]
 
 
-adminAllowPath       =  f"{adminDestination}\\AllowPathAdmin"  
-adminInspectionPath  =  f"{adminDestination}\\InspectionPath"             # for Admin, Need to Inspection Then Send ...
-adminforbiddenPath   =  f"{adminDestination}\\ForbiddenPath"              # for Admin, Forbiden To transfer
-adminAll             =  f"{adminDestination}\\All"                        # for Admin, main Source to destinations appending ...
+adminAllowPath       =  f"{adminDestination}\\AllowPathAdmin\\"  
+adminInspectionPath  =  f"{adminDestination}\\InspectionPath\\"             # for Admin, Need to Inspection Then Send ...
+adminforbiddenPath   =  f"{adminDestination}\\ForbiddenPath\\"              # for Admin, Forbiden To transfer
+adminAll             =  f"{adminDestination}\\All\\"                        # for Admin, main Source to destinations appending ...
 
 
 
@@ -33,7 +33,7 @@ def getCopyError(func):
     
 def xcopyFile(source, destination):
     
-    os.system(f'"cmd.exe /c xcopy "{source}" "{destination}" /s /d /y /e /x /v /k /I "')    #/s /d /y /e /x /v /k /I
+    os.system(f'"cmd.exe /c xcopy "{source}" "{destination}" /s /d /h /y /e /x /v /k /I "')    #/s /d /y /e /x /v /k /I
 
 
 
