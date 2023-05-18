@@ -1,17 +1,14 @@
 import serial
 import time
+from datetime import datetime
+
 import os, shutil
 import time
 
-from datetime import datetime
-
-## Done
 inputMinuteInterval = 1   # max = 1440 m
-## Done
 port = 'COM4'
 
-## Done
-def findNextTime(inputMinuteInterval) :  
+def findNextTime(inputMinuteInterval) :
 
         timeNow = str(datetime.now().strftime("%H:%M:%S %p"))
         # print(timeNow)
@@ -38,7 +35,6 @@ def findNextTime(inputMinuteInterval) :
 
         return int(hn), int(mn), int(sn)
 
-## Done
 def happen(nextTime) :
     
     
@@ -53,10 +49,6 @@ def happen(nextTime) :
     if (h == nh) and (m == nm) :
          return True
 
-
-
-
-## Done
 def getSerialOrNone(port):
     try:
        return serial.Serial(port)
@@ -64,9 +56,8 @@ def getSerialOrNone(port):
        
        print("\nWarning:\n       Serial Port Lost  _  PC1")
        return None
-
-## Done 
-def relayPc1():
+    
+def pc1():
     
     
     if getSerialOrNone(port) != None :
@@ -78,12 +69,6 @@ def relayPc1():
         serialcomm.write(i.encode())
 
    
-
-# -----------------------------------------------
-
-
-
-
     
 def copy2pc1():
 
@@ -115,7 +100,7 @@ while True :
          if getSerialOrNone(port) != None :
               
               copy2pc1()
-              relayPc1()
+              pc1()
          
          time.sleep(10)
          

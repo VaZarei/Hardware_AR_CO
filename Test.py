@@ -1,45 +1,36 @@
-def xcopyx(source, destination):
 
-    os.system(f'cmd /k "xcopy {source} {destination} /s /y /e /x /v /k /I"')
+# sourceFile = "H:\Projects\SafeTranferData\Data\Fol_1\\backAl.py"
+# destFile   = "H:\Projects\SafeTranferData\Data\Fol_2\\"
+
 
 import os
-import subprocess
-import time
-
-source      = "H:\Projects\SafeTranferData\Data\Fol_1"
-destination = "H:\Projects\SafeTranferData\Data\Fol_2"
-
-#"H:\Projects\SafeTranferData\Data\Fol_1\AAAFolder - Copy\12 - Copy.bmp"
-#sourceFile = "H:\Projects\SafeTranferData\Data\Fol_1\AAAFolder - Copy\\12 - Copy.bmp"
-
-sourceFile = "H:\Projects\SafeTranferData\Data\Fol_1\\backAl.py"
-destFile   = "H:\Projects\SafeTranferData\Data\Fol_2\\"
 
 
-def xcopyFolder(source, destination):
+source = "H:\Projects\SafeTranferData\Data\Admin"
+def deleteEmptyFolders(source) :
 
-    os.system(f'cmd /k "xcopy {source} {destination} /s /y /e /x /v /k /I"')
-    print("done")
+    emptyFolderAddress = []
+    for root, dirs, files in os.walk(source):
+
+        if len(files) == 0 and len(dirs) == 0 :
+            emptyFolderAddress.append(root)
 
 
+    while len(emptyFolderAddress) > 0 :
+        #print("emptyFolders :", emptyFolderAddress)
+        for i in emptyFolderAddress :
+            try:
+                    os.removedirs(i)
+            except :
+                    print("Cant Delete, May be folder in use or not empty !")
+        emptyFolderAddress = []
 
+        for root, dirs, files in os.walk(source):
 
-def xcopyFile(source, destination):
-    print("Source:", source )
-    print("destination:", destination)
-    os.system(f'"xcopy {source} {destination}  /y /o /k "')  
-    
-  
-i=100
-
-while i>0 :
-
-    i-=1
-    print("I:", i)
-    xcopyFile(sourceFile, destFile)
-    time.sleep(3)
-    
+                if len(files) == 0 and len(dirs) == 0 :
+                    emptyFolderAddress.append(root)
 
 
 
-    
+    print("Done")
+            

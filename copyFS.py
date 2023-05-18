@@ -1,5 +1,6 @@
 import os
 import time
+import shutil
 
 flash_address =  "r:"
 
@@ -45,21 +46,33 @@ def xcopyFile(source, destination):
     
         os.system(f'"cmd.exe /c xcopy "{source}" "{destination}" /s /d /y /e /x /v /k /I "')    #/s /d /y /e /x /v /k /I
 
-def removeEmptyFolder(source):
-    
+def deleteEmptyFolders(source) :
+
+    emptyFolderAddress = []
     for root, dirs, files in os.walk(source):
-        
-        print("File :", files)
-        print("Dirs :", dirs)
-        print("---------")
-        
-   
 
-  
-    pass  
+        if len(files) == 0 and len(dirs) == 0 :
+            emptyFolderAddress.append(root)
 
-removeEmptyFolder(adminDestination)
 
+    while len(emptyFolderAddress) > 0 :
+        #print("emptyFolders :", emptyFolderAddress)
+        for i in emptyFolderAddress :
+            try:
+                    os.removedirs(i)
+            except :
+                    print("Cant Delete, May be folder in use or not empty !")
+        emptyFolderAddress = []
+
+        for root, dirs, files in os.walk(source):
+
+                if len(files) == 0 and len(dirs) == 0 :
+                    emptyFolderAddress.append(root)
+
+
+
+    print("Done")
+    
 def filterCopy(source, destination, ExtentionsList):
 
      
@@ -106,17 +119,21 @@ def filterCopy(source, destination, ExtentionsList):
 
 
 
+
 while True : 
    
-   if check_flash(flash_address) > 1000 :
+   if check_flash(flash_address) > 0 :
 
 
       ## Admin Section _________________________________________________________________________________________________________##
          
-      filterCopy(source, adminAll, [])
+      #filterCopy(source, adminAll, [])
       filterCopy(source, adminInspectionPath, incpectionExtentions)
       filterCopy(source, adminforbiddenPath,  forbiddenExtentions)
+     
 
+
+      deleteEmptyFolders(adminDestination)
 
 
       ## Client Section _________________________________________________________________________________________________________##
@@ -124,6 +141,8 @@ while True :
 
       #getCopyError(filterCopy(source, clientDestination, allowExtentions))
       break
+   
+   
    else :
       print("Flash is Unplug . . .     !")
       time.sleep(2)
