@@ -1,38 +1,13 @@
+from copyFS import *
+from arduinoFS import *
+from timeFS import *
+from definitionsFS import *
+
 import os
 import time
 import shutil
 
-flash_address =  "r:"
 
-
-source            = flash_address #"H:\Projects\SafeTranferData\Data\Fol_1"
-clientDestination = "H:\Projects\SafeTranferData\Data\Fol_2"
-adminDestination  = "H:\Projects\SafeTranferData\Data\Admin"
-
-
-allowExtentions       = ["jpg", "txt", "pdf", "rar", "bmp", "accdb"]
-incpectionExtentions  = ["exe", "py", "mp4", "ini"]
-forbiddenExtentions   = ["mp3", "py"]
-
-
-adminAllowPath       =  f"{adminDestination}\\AllowPathAdmin\\"  
-adminInspectionPath  =  f"{adminDestination}\\InspectionPath\\"             # for Admin, Need to Inspection Then Send ...
-adminforbiddenPath   =  f"{adminDestination}\\ForbiddenPath\\"              # for Admin, Forbiden To transfer
-adminAll             =  f"{adminDestination}\\All\\"                        # for Admin, main Source to destinations appending ...
-
-
-
-
-
-def check_flash(flash_address):
-    i = 0
-    try:
-      for files in os.listdir(flash_address) :
-        i+=1
-      return i
-
-    except FileNotFoundError :
-       return i
 
 def getCopyError(func):
     try:
@@ -94,15 +69,9 @@ def filterCopy(source, destination, ExtentionsList):
    for index, files in enumerate(filesName) :
       #print("------------------------------------------------------------------------------------------------------------------------INdex: ", index)
       sourcFilepath = filesPath[index]
- 
-
-
       destFilePath = sourcFilepath.replace(source, destination )
       destFolderPath = destFilePath.replace(files, "")
       destFolderPath = destFolderPath
-      
-
-
       
   
       loc = files.find(".")
@@ -115,6 +84,18 @@ def filterCopy(source, destination, ExtentionsList):
           for i in range(len(ExtentionsList)):
             if files[loc+1:] == ExtentionsList[i] :
                    xcopyFile(sourcFilepath, destFolderPath)
+
+      
+   deleteEmptyFolders(destination)
+
+
+
+
+
+
+
+
+# --------------------------------------
 
 
 
@@ -131,10 +112,6 @@ while True :
       filterCopy(source, adminInspectionPath, incpectionExtentions)
       filterCopy(source, adminforbiddenPath,  forbiddenExtentions)
      
-
-
-      deleteEmptyFolders(adminDestination)
-
 
       ## Client Section _________________________________________________________________________________________________________##
 
@@ -153,6 +130,9 @@ while True :
 
       if val == 'c' :
           pass   
+
+
+
 
 
 

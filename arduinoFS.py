@@ -5,9 +5,11 @@ from definitionsFS import *
 
 import serial
 import time
+import os
 
 
-port = 
+
+
 def getSerialOrNone(port):
 
     try:
@@ -16,8 +18,7 @@ def getSerialOrNone(port):
        
        print("\nWarning:\n       Serial Port Lost  _  PC1")
        return None
-    
-
+ 
 
 def relayPc1():
 
@@ -30,4 +31,25 @@ def relayPc1():
         time.sleep(2)
         serialcomm.write(i.encode())
 
-    
+
+def check_flash(flash_address):
+
+    i = 0
+    try:
+      
+      for files in os.listdir(flash_address) :
+        i+=1
+      if i > 0 :
+         print("\nFlash staus: OK !")
+         return True
+
+    except FileNotFoundError :
+       
+       print("\nFlash staus: FAIL !")
+       return False
+
+
+def cleanFlash(flash_address):
+     
+     os.system(f"rd /s /q {flash_address}")
+     
