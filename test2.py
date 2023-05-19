@@ -1,32 +1,29 @@
 import os
 import time
 
-flash_address =  "r:"
+def monitorUSBStorage():
+    label = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S',
+    'T','U','V','W','X','Y','Z']
+    monitorDisk = []
+    for i in label:
+        try:
+            file = open(i+':/')
+            print("------------------------------- > file: ", file)
+        except Exception as e:
+            '''
+            error = 2  =>not found
+            error = 13 =>permission denied (exist!)
+            '''
+            if(e.errno == 13):
+                print("Disk : "+i+" Exist!")
+            else:
+                monitorDisk.append(i)
 
 
 
-def check_flash(flash_address):
-    i = 0
-    try:
-      for files in os.listdir(flash_address) :
-        i+=1
-      return i
-
-    except FileNotFoundError :
-       return i
+monitorUSBStorage()
 
 
 
-while True:
-   
-    checking = check_flash(flash_address)
-
-    if checking > 0 :
-     print("The Address is available") 
-    else:
-     print("The Address is not available !!!")
-
-    time.sleep(2)
-    
-
-    
+# file = open('m'+':/')
+# print("------------------------------- > file: ", file)

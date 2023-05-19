@@ -1,36 +1,76 @@
-
-# sourceFile = "H:\Projects\SafeTranferData\Data\Fol_1\\backAl.py"
-# destFile   = "H:\Projects\SafeTranferData\Data\Fol_2\\"
+# import os
 
 
-import os
+# # os.system('powershell $driveEject = New-Object -comObject Shell.Application; $driveEject.Namespace(17).ParseName("""D:""").InvokeVerb("""Eject""")')
 
 
-source = "H:\Projects\SafeTranferData\Data\Admin"
-def deleteEmptyFolders(source) :
+# '''
+# Usage: python3 usb_eject.py
+# OS: Window7 and later
+# Eject the usb storage when the usb device plugin your PC!
+# '''
+# from time import sleep
+# import http.client
+# import subprocess
 
-    emptyFolderAddress = []
-    for root, dirs, files in os.walk(source):
+# def monitorUSBStorage():
+#     label = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S',
+#     'T','U','V','W','X','Y','Z']
+#     monitorDisk = []
+#     for i in label:
+#         try:
+#             file = open(i+':/')
+#             print("------------------------------- > file: ", file)
+#         except Exception as e:
+#             '''
+#             error = 2  =>not found
+#             error = 13 =>permission denied (exist!)
+#             '''
+#             if(e.errno == 13):
+#                 print("Disk : "+i+" Exist!")
+#             else:
+#                 monitorDisk.append(i)
 
-        if len(files) == 0 and len(dirs) == 0 :
-            emptyFolderAddress.append(root)
+#     print("Start monitoring.....")
+#     while(True):
+#         print("Check...")
+#         isININ = False
+#         disk = ''
+#         for i in monitorDisk:
+#             try:
+#                 file = open(i+':/')
+#             except Exception as e:
+#                 if(e.errno == 13):
+#                     print("Disk : "+i+" Exist!")
+#                     isININ = True
+#                     disk = i
+#                     break
+#         if(isININ):
+#             tmpFile = open('tmp.ps1','w')
+#             tmpFile.write('$driveEject = New-Object -comObject Shell.Application\n')
+#             tmpFile.write('$driveEject.Namespace(17).ParseName("'+disk+':").InvokeVerb("Eject")')
+#             tmpFile.close()
+#             process = subprocess.Popen(['powershell.exe', '-ExecutionPolicy','Unrestricted','./tmp.ps1'])
+#             process.communicate()
+#         #sleep for 2 seconds
+#         sleep(2)
+
+# if __name__ == '__main__':
+#     monitorUSBStorage()
 
 
-    while len(emptyFolderAddress) > 0 :
-        #print("emptyFolders :", emptyFolderAddress)
-        for i in emptyFolderAddress :
-            try:
-                    os.removedirs(i)
-            except :
-                    print("Cant Delete, May be folder in use or not empty !")
-        emptyFolderAddress = []
 
-        for root, dirs, files in os.walk(source):
+# import win32file     # pip install pypiwin32
+# drive_letter = 'D:'
+# win32file.CloseHandle(win32file.CreateFile("\\\\.\\%s:" % drive_letter))
 
-                if len(files) == 0 and len(dirs) == 0 :
-                    emptyFolderAddress.append(root)
+import win32file
 
-
-
-    print("Done")
-            
+drive_letter = 'D:'
+win32file.CancellationIOCompletion(win32file.CreateFile(f"\\\\.\\{drive_letter}:",
+                                                        win32file.GENERIC_READ,
+                                                        win32file.FILE_SHARE_READ | win32file.FILE_SHARE_WRITE,
+                                                        None,
+                                                        win32file.OPEN_EXISTING,
+                                                        win32file.FILE_ATTRIBUTE_NORMAL,
+                                                        None))

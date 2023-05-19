@@ -101,51 +101,51 @@ def filterCopy(source, destination, ExtentionsList):
 
 
 
-while True : 
+# while True : 
    
-   if check_flash(flash_address) > 0 :
+#    if check_flash(flash_address) > 0 :
 
 
-      ## Admin Section _________________________________________________________________________________________________________##
+#       ## Admin Section _________________________________________________________________________________________________________##
          
-      #filterCopy(source, adminAll, [])
-      filterCopy(source, adminInspectionPath, incpectionExtentions)
-      filterCopy(source, adminforbiddenPath,  forbiddenExtentions)
+#       #filterCopy(source, adminAll, [])
+#       filterCopy(source, adminInspectionPath, incpectionExtentions)
+#       filterCopy(source, adminforbiddenPath,  forbiddenExtentions)
      
 
-      ## Client Section _________________________________________________________________________________________________________##
+#       ## Client Section _________________________________________________________________________________________________________##
 
 
-      #getCopyError(filterCopy(source, clientDestination, allowExtentions))
-      break
+#       #getCopyError(filterCopy(source, clientDestination, allowExtentions))
+#       break
    
    
-   else :
-      print("Flash is Unplug . . .     !")
-      time.sleep(2)
+#    else :
+#       print("Flash is Unplug . . .     !")
+#       time.sleep(2)
       
-      val = input("Trying to coonect to Flash   ,    if you want to quit please write 'q' and if you want to continue write 'c' :")
-      if val == 'q' :
-          break   
+#       val = input("Trying to coonect to Flash   ,    if you want to quit please write 'q' and if you want to continue write 'c' :")
+#       if val == 'q' :
+#           break   
 
-      if val == 'c' :
-          pass   
-
-
+#       if val == 'c' :
+#           pass   
 
 
 
 
 
 
-val = input("Delete all ?  (y / n):")
 
-if val == "y" :
+
+# val = input("Delete all ?  (y / n):")
+
+# if val == "y" :
     
-    os.system(f"rd /s /q H:\Projects\SafeTranferData\Data\\Admin")
+#     os.system(f"rd /s /q H:\Projects\SafeTranferData\Data\\Admin")
     
     
 
-if val == "n" :
+# if val == "n" :
     
-    pass
+#     pass

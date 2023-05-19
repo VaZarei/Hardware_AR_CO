@@ -1,0 +1,46 @@
+
+
+DeviceID     : C:
+DriveType    : 3
+ProviderName : 
+FreeSpace    : 115475132416
+Size         : 171190513664
+VolumeName   : 
+
+DeviceID     : D:
+DriveType    : 2
+ProviderName : 
+FreeSpace    : 9988501504
+Size         : 15551426560
+VolumeName   : CPBA_X64FRE_EN-US_DV9
+
+DeviceID     : E:
+DriveType    : 3
+ProviderName : 
+FreeSpace    : 181979189248
+Size         : 214748360704
+VolumeName   : Projects
+
+DeviceID     : F:
+DriveType    : 3
+ProviderName : 
+FreeSpace    : 87034626048
+Size         : 291530338304
+VolumeName   : Media
+
+DeviceID     : G:
+DriveType    : 3
+ProviderName : 
+FreeSpace    : 102436986880
+Size         : 322122543104
+VolumeName   : Ma
+
+DeviceID     : H:
+DriveType    : 5
+ProviderName : 
+FreeSpace    : 
+Size         : 
+VolumeName   : 
+
+
+

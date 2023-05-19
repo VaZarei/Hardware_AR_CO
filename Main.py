@@ -26,8 +26,8 @@ while True :
     serialConectionStatus = getSerialOrNone(comPort)  # True or False
 
     # Flash plug status
-     
-    flashStatus = check_flash(flash_address)       # True or False
+    flash_address = findUsbLetter(flashUsbName)
+    flashStatus   = check_flash(flash_address)       # True or False
 
 
     if serialConectionStatus and flashStatus :

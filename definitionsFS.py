@@ -25,7 +25,8 @@ comPort = 'COM4'
 
 # -----------------  Copy  -----------------------
 
-flash_address =  "r:"
+
+flashUsbName       =  "forTransfer"
 
 
 source            = "H:\Projects\SafeTranferData\Data\Fol_1"
