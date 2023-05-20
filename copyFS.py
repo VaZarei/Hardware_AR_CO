@@ -46,7 +46,7 @@ def deleteEmptyFolders(source) :
 
 
 
-    print("Done")
+    
     
 def filterCopy(source, destination, ExtentionsList):
 

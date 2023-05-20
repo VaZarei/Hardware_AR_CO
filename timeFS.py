@@ -29,7 +29,7 @@ def findNextTime(inputMinuteInterval) :
 
         
 
-
+        print(f" ----------------------------------------------------  >   Next time is {hn}:{mn}:00")
         return int(hn), int(mn), int(sn)
 
 
@@ -43,8 +43,9 @@ def happen(nextTime) :
     h = int(timeNow[0:2])
     m = int(timeNow[3:5])
     
-    
+    print("Arive Time Order11111111")
     if (h == nh) and (m == nm) :
+         print("Arive Time Order")
          return True
 
 

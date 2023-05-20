@@ -15,17 +15,21 @@ import subprocess
 def getSerialOrNone(port):
 
     try:
-       return serial.Serial(port)
+       
+      
+       if serial.Serial(port):
+           print("\nSerial Status: OK !")
+           return serial.Serial(port)
     except:
        
-       print("\nWarning:\n       Serial Port Lost  _  PC1")
+       print("\nSerial Status: Failed !")
        return None
  
 
-def relayPc1():
+def relayPc1(port):
 
 
-    if getSerialOrNone(comPort) != None :
+    if getSerialOrNone(port) != None :
             
         i = 'pc1'
         serialcomm = serial.Serial('COM4', 9600, timeout=5.0)
@@ -41,13 +45,12 @@ def check_flash(flash_address):
       
       for files in os.listdir(flash_address) :
         i+=1
-      if i > 0 :
-         print("\nFlash staus: OK !")
-         return True
+      print("Flash Status : OK !")
+      return True
 
-    except FileNotFoundError :
+    except :
        
-       print("\nFlash staus: FAIL !")
+       print("Flash Status : Failed !")
        return False
 
 

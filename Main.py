@@ -11,6 +11,8 @@ from definitionsFS import *
 
 while True : 
 
+    
+
 
    
 
@@ -20,9 +22,10 @@ while True :
          # Flash plug status                                         : Done 
          # check flag next time                                      : Done
          # Register Start time since conect Hardware and Relaytime   : Done
-  
-    # check comPort
+    
 
+    print("\n***** Checkin Serial Port and Flash Connection *****")
+    # check comPort
     serialConectionStatus = getSerialOrNone(comPort)  # True or False
 
     # Flash plug status
@@ -30,15 +33,26 @@ while True :
     flashStatus   = check_flash(flash_address)       # True or False
 
 
-    if serialConectionStatus and flashStatus :
+    if serialConectionStatus and flash_address :
+        print("\nStart next Steps :")
+        
         
 
     # Register Start time since conect Hardware and Relaytime
 
-
-        happenStatusForRelayFlag = happen(findNextTime(inputMinuteInterval))               # True or False
+        
+        happenStatusForRelayFlag = happen(findNextTime(inputMinuteIntervalForRelay))               # True or False
        
-     
+        if happenStatusForRelayFlag :
+            print("Relay make change in 10 second later !")
+            time.sleep(20)
+            #relayPc1(comPort)
+
+            if not(flashStatus and serialConectionStatus) :
+                happenStatusForRelayFlag = False
+                time.sleep(40)
+                break
+
 
 
     # -----------------  Time  -----------------------
@@ -74,6 +88,8 @@ while True :
 
         ## Admin Section _________________________________________________________________________________________________________##
 
+        print("\n***** Start copy flash to pc")
+        print(flash_address , adminAll)
         filterCopy(flash_address, adminAll, [])
         filterCopy(flash_address, adminInspectionPath, incpectionExtentions)
         filterCopy(flash_address, adminforbiddenPath,  forbiddenExtentions)
@@ -87,11 +103,11 @@ while True :
 
     # remove Flash content
 
-        cleanFlash(flash_address)
+        #cleanFlash(flash_address)
 
     # start copy pc to flash every N minute Sections
-
-        filterCopy(source, flash_address, [])
+        print("\n***** Start copy PC to Flash")
+        filterCopy(clientDestination, flash_address, [])
        
 
  
@@ -100,8 +116,8 @@ while True :
 
 
 
-
-
+    print("End of while -----------------------------------------------------------------")
+    time.sleep(10)
     pass
 
 

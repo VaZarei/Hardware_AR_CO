@@ -14,7 +14,9 @@ from definitionsFS import *
 
 # ---------------  Controller  -------------------
 
-inputMinuteInterval = 1   # max = 1440 m
+inputMinuteIntervalForRelay = 2   # max = 1440 m
+stepCopyInterval = inputMinuteIntervalForRelay / 4
+
 comPort = 'COM4'
 
 
@@ -29,8 +31,8 @@ comPort = 'COM4'
 flashUsbName       =  "forTransfer"
 
 
-source            = "H:\Projects\SafeTranferData\Data\Fol_1"
-clientDestination = "H:\Projects\SafeTranferData\Data\Fol_2"
+source            = "H:\Projects\SafeTranferData\Data\Fol_1\\"
+clientDestination = "H:\Projects\SafeTranferData\Data\Fol_2\\"
 adminDestination  = "H:\Projects\SafeTranferData\Data\Admin"
 
 
