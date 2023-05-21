@@ -14,8 +14,8 @@ from definitionsFS import *
 
 # ---------------  Controller  -------------------
 
-inputMinuteIntervalForRelay = 2   # max = 1440 m
-stepCopyInterval = inputMinuteIntervalForRelay / 4
+inputMinuteIntervalForRelay = 1/3   # max = 1440 m
+stepCopyInterval = inputMinuteIntervalForRelay * 60 / 3
 
 comPort = 'COM4'
 

@@ -28,14 +28,20 @@ def getSerialOrNone(port):
 
 def relayPc1(port):
 
+    try:
+          
+      if getSerialOrNone(port) != None :
+              
+          i = 'pc1'
+          serialcomm = serial.Serial('COM4', 9600, timeout=5.0)
+          print("pc1 Done")
+          time.sleep(2)
+          serialcomm.write(i.encode())
+          return True
+    except:
+        return False
 
-    if getSerialOrNone(port) != None :
-            
-        i = 'pc1'
-        serialcomm = serial.Serial('COM4', 9600, timeout=5.0)
-        print("pc1 Done")
-        time.sleep(2)
-        serialcomm.write(i.encode())
+      
 
 # may be no need to use
 def check_flash(flash_address):
